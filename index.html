@@ -1,0 +1,63 @@
+<html>
+<head>
+	<style>
+		html {
+			font-size: 10px;
+			font-family: sans-serif;
+		}
+		body {
+			display: flex;
+			flex-direction: row;
+			font-size: 20;
+			padding: 0 10rem;
+		}
+		body > nav, body > main {
+			display: block;
+			min-height: calc(100vh - 6rem);
+			margin: 1rem;
+			background: #ccc;
+		}
+		body > nav {
+			flex-grow: 1;
+			padding: 0 2rem;
+		}
+		body > main {
+			flex-grow: 8;
+ 			padding: 0 2rem;
+		}
+	</style>
+</head>
+<body>
+	<nav>
+		<h2>Navigation</h2>
+		<ul></ul>
+	</nav>
+	<main>
+		<h1>Content</h1>
+		<article></article>
+	</main>
+</body>
+<script>
+	const pages = {
+		home: 'This is the homepage content',
+		test: 'This is test content',
+		foo: 'This is foo content',
+		bar: 'This is bar content'
+	}
+	const routes = Object.keys(pages)
+	const menu = document.querySelector('body > nav > ul')
+	const article = document.querySelector('body > main > article')
+
+	routes.forEach(route => {
+		menu.innerHTML += `<li><a href="#${route}">${route}</a></li>`
+	})
+
+	window.onhashchange = function(evt) {
+		const hash = evt.newURL.split('#').pop()
+
+		if (routes.includes(hash)) {
+			article.innerHTML = pages[hash]
+		}
+	}
+</script>
+</html>
