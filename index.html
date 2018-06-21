@@ -52,6 +52,8 @@
 		menu.innerHTML += `<li><a href="#${route}">${route}</a></li>`
 	})
 
+	window.location.hash = 'home'
+
 	window.onhashchange = function(evt) {
 		const hash = evt.newURL.split('#').pop()
 
